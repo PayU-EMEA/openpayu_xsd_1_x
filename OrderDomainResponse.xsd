@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="Common.xsd"/>
+	<xs:include schemaLocation="OrderCreateResponse.xsd"/>
+	<xs:include schemaLocation="OrderRetrieveResponse.xsd"/>
+	<xs:include schemaLocation="OrderStatusUpdateResponse.xsd"/>
+	<xs:include schemaLocation="OrderCancelResponse.xsd"/>
+	<xs:include schemaLocation="OrderNotifyResponse.xsd"/>
+	<xs:include schemaLocation="ShippingCostRetrieveResponse.xsd"/>
+	<xs:complexType name="OrderDomainResponse">
+		<xs:sequence>
+			<xs:element name="OrderCreateResponse" type="payu:OrderCreateResponse" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="OrderRetrieveResponse" type="payu:OrderRetrieveResponse" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="OrderStatusUpdateResponse" type="payu:OrderStatusUpdateResponse" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="OrderCancelResponse" type="payu:OrderCancelResponse" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="OrderNotifyResponse" type="payu:OrderNotifyResponse" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ShippingCostRetrieveResponse" type="payu:ShippingCostRetrieveResponse" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

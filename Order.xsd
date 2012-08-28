@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:include schemaLocation="ShoppingCart.xsd"/>
+	<xs:include schemaLocation="OrderType.xsd"/>
+	<xs:include schemaLocation="Type_EInvoiceProvidedCode.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Struktura opisująca zamówienie wysyłane do PayU.</xs:documentation>
+		<xs:documentation xml:lang="en">Structure that describes an order placed by a buyer.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Order">
+		<xs:sequence>
+			<xs:element name="MerchantPosId" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Unikalne ID punktu sprzedaży w systemie transakcyjnym PayU</xs:documentation>
+					<xs:documentation xml:lang="en">Unique ID of point of sale/merchant in the transactional system of PayU</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SessionId" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Unikalne ID zamówienia w systemie transakcyjnym</xs:documentation>
+					<xs:documentation xml:lang="en">Unique ID the current order in the transactional system.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="OrderUrl" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Adres URL do zamówienia złożonego w serwisie merchanta.</xs:documentation>
+					<xs:documentation xml:lang="en">URL of the order placed in an e-shop.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="OrderCreateDate" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Data wygenerowania zlecenia płatności - zgodnie z normą ISO</xs:documentation>
+					<xs:documentation xml:lang="en">Generation date of payment request - according to ISO standard</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderDescription" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Opis zamówienia nadany przez merchanta</xs:documentation>
+					<xs:documentation xml:lang="en">Description of the order defined by a merchant</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="4000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ValidityTime" default="1440" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Czas ważności zamówienia wyrażony w minutach i liczony od momentu OrderCreateDate. Brak wartości oznacza przyjęcie 1440-minutowego bufora na dokończenie płatności przez kupującego</xs:documentation>
+					<xs:documentation xml:lang="en">Validity time of the order (in minutes) counted from the moment of OrderCreateDate. Missing value means 1440-minutes timer that the order must be paid without an interruption of the payment flow</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="527040"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="EInvoiceProvided" type="payu:EInvoiceProvidedCode" default="FALSE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Parametr określający, czy w ramach tego zamówienia kupujący może otrzymać fakturę elektroniczną. FALSE - merchant nie wystawia faktur elektronicznych, TRUE - merchant wystawia faktury elektroniczne</xs:documentation>
+					<xs:documentation xml:lang="en">Parameter that states whether bayuer can obtain an e-invoice for the order. FALSE - merchant does not issue e-invoices. TRUE - merchant issues e-invoices</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderType" type="payu:OrderType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Typ zamówienia</xs:documentation>
+					<xs:documentation xml:lang="en">Order type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShoppingCart" type="payu:ShoppingCart" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Zawartość koszyka zakupów</xs:documentation>
+					<xs:documentation xml:lang="en">Shopping cart data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MerchantAuthorizationKey" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Klucz autoryzacyjny punktu sprzedaży</xs:documentation>
+					<xs:documentation xml:lang="en">Authorization key of a POS/merchant</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="128"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

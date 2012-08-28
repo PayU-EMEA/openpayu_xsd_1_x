@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:include schemaLocation="StatusCode.xsd"/>
+	<xs:complexType name="Status">
+		<xs:sequence>
+			<xs:element name="StatusCode" type="payu:StatusCode" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kod statusu - typ enumerowany</xs:documentation>
+					<xs:documentation xml:lang="en">Status code - enumerated type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ServerStatusCode" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kod statusu serwera</xs:documentation>
+					<xs:documentation xml:lang="en">Server status code</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Severity" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Ważność statusu</xs:documentation>
+					<xs:documentation xml:lang="en">Severity of the status</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StatusDesc" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Opis statusu</xs:documentation>
+					<xs:documentation xml:lang="en">Description of the status</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Location" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Lokalizacja źródła statusu</xs:documentation>
+					<xs:documentation xml:lang="en">Location of the status source</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Version">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Algorithm">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MD5"/>
+			<xs:enumeration value="SHA-1"/>
+			<xs:enumeration value="SHA-256"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="Common.xsd"/>
+	<xs:include schemaLocation="BaseResponse.xsd"/>
+	<xs:include schemaLocation="AvailableShippingCost.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Komunikat odpowiedzi odsyłający koszty wysyłki.</xs:documentation>
+		<xs:documentation xml:lang="en">Object used to send a response with the cost of a shipping.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ShippingCostRetrieveResponse">
+		<xs:complexContent>
+			<xs:extension base="payu:BaseResponse">
+				<xs:sequence>
+					<xs:element name="AvailableShippingCost" type="payu:AvailableShippingCost" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Typ zawierający dostępne koszty i formy wysyłki dla podanego kraju/regionu/miasta.</xs:documentation>
+							<xs:documentation xml:lang="en">Object that contains availabe shipping costs for a given country/state/city.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Wartości określające typ adresu.</xs:documentation>
+		<xs:documentation xml:lang="en">Enumerated list of address types.</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="AddressType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="HOME">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Adres domowy</xs:documentation>
+					<xs:documentation xml:lang="en">Home address</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SHIPPING">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Adres wykorzystywany jako adres przesyłki</xs:documentation>
+					<xs:documentation xml:lang="en">Shipping (delivery) address</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BILLING">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Adres wykorzystywany jako adres do faktury</xs:documentation>
+					<xs:documentation xml:lang="en">Billing address used for invoicing purposes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

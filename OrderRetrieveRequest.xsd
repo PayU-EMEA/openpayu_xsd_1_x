@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="Order.xsd"/>
+	<xs:include schemaLocation="BaseRequest.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Struktura opisująca komunikat pobierania danych o zamówieniu.</xs:documentation>
+		<xs:documentation xml:lang="en">Structure that describes the order retrieval request.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="OrderRetrieveRequest">
+		<xs:complexContent>
+			<xs:extension base="payu:BaseRequest">
+				<xs:sequence>
+					<xs:element name="MerchantPosId" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Unikalne ID punktu sprzedaży w systemie transakcyjnym PayU</xs:documentation>
+							<xs:documentation xml:lang="en">Unique ID of point of sale/merchant in the transactional system of PayU</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="64"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="SessionId" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Unikalne ID zamówienia w systemie transakcyjnym</xs:documentation>
+							<xs:documentation xml:lang="en">Unique ID the current order in the transactional system</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="64"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OrderRetrieveRequest" type="payu:OrderRetrieveRequest"/>
+</xs:schema>

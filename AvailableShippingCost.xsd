@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:include schemaLocation="CountryCode.xsd"/>
+	<xs:include schemaLocation="ShippingCost.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Typ przekazujący ze sklepu do PayU dostępne formy i koszty wysyłki w zależoności od krajów.</xs:documentation>
+		<xs:documentation xml:lang="en">An e-shop uses that structure to pass available shipping types and costs.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AvailableShippingCost">
+		<xs:sequence>
+			<xs:element name="ShippingCostList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ShippingCost" type="payu:ShippingCost" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation xml:lang="pl">Lista typów opisujących koszty i rodzaje wysyłki</xs:documentation>
+								<xs:documentation xml:lang="en">List of types that describe costs and shipping types</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CountryCode" type="payu:CountryCode" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kod kraju według ISO-3166. Domyślny kraj wysyłki dla sklepu internetowego</xs:documentation>
+					<xs:documentation xml:lang="en">Country code according to ISO-3166 standard. Default country of delivery declared by a merchant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="City" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Domyślne miasto wysyłki dla sklepu internetowego</xs:documentation>
+					<xs:documentation xml:lang="en">Default city of delivery declared by an e-shop</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="70"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="State" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Domyślne województwo/region/stan wysyłki dla sklepu internetowego</xs:documentation>
+					<xs:documentation xml:lang="en">Default state/region of delivery declared by an e-shop</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="70"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ShipToOtherCountry" type="xs:boolean" default="false" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wartość prawda/fałsz określająca czy sklep umożliwia wysyłkę do innych krajów niż domyślny.</xs:documentation>
+					<xs:documentation xml:lang="en">Boolean value that describes whether e-shop allows for overseas shipping. false = overseas shipping is not allowed, true = overseas shiping is allowed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Obiekt opisujący cenę</xs:documentation>
+		<xs:documentation xml:lang="en">Object used to describe price</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="CurrencyCode.xsd"/>
+	<xs:complexType name="Discount">
+		<xs:sequence>
+			<xs:element name="CouponCodeUsed" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kupon rabatowy</xs:documentation>
+					<xs:documentation xml:lang="en">Coupon code used</xs:documentation>
+				</xs:annotation>			
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Price">
+		<xs:sequence>
+			<xs:element name="Net" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Cena netto produktu wyrażona w najmniejszej jednostce monetarnej (grosz, cent, itp.)</xs:documentation>
+					<xs:documentation xml:lang="en">Net price expressed in the smallest moentary unit - e.g. grosz, cent, eurocent.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="99999999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Gross" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Cena brutto produktu wyrażona w najmniejszej jednostce monetarnej (grosz, cent, itp.). Gross=Net+Tax</xs:documentation>
+					<xs:documentation xml:lang="en">Gross price expressed in the smallest monetary unit - e.g. grosz, cent, eurocent. Gross=Net+Tax</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="99999999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Tax" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kwota podatku</xs:documentation>
+					<xs:documentation xml:lang="en">Tax amount</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="99999999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TaxRate" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Procentowa stawka podatku</xs:documentation>
+					<xs:documentation xml:lang="en">Tax rate expressed in %</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="16"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CurrencyCode" type="payu:CurrencyCode" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kod waluty ISO 4217</xs:documentation>
+					<xs:documentation xml:lang="en">Currency code ISO 4217</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

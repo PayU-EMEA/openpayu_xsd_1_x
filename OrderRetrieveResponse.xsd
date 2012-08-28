@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Dominik Zyskowski (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="Common.xsd"/>
+	<xs:include schemaLocation="Shipping.xsd"/>
+	<xs:include schemaLocation="Invoice.xsd"/>
+	<xs:include schemaLocation="Billing.xsd"/>
+	<xs:include schemaLocation="PaymentStatusCode.xsd"/>
+	<xs:include schemaLocation="OrderStatusCode.xsd"/>
+	<xs:include schemaLocation="PackageStatusCode.xsd"/>
+	<xs:include schemaLocation="CustomerRecord.xsd"/>
+	<xs:include schemaLocation="BaseResponse.xsd"/>
+	<xs:include schemaLocation="TypeA_BillingAddress.xsd"/>
+	<xs:include schemaLocation="Type_EInvoiceRequestedCode.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Struktura opisująca odpowiedź na komunikat pobierania danych o zamówieniu.</xs:documentation>
+		<xs:documentation xml:lang="en">Structure that describes the order retrieval response.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="OrderRetrieveResponse">
+		<xs:complexContent>
+			<xs:extension base="payu:BaseResponse">
+				<xs:sequence>
+					<xs:element name="MerchantPosId" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Unikalne id punktu sprzedaży w systemie transakcyjnym PayU/</xs:documentation>
+							<xs:documentation xml:lang="en">Unique id of point of sale/merchant in the PayU transactional system</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SessionId" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Unikalne ID zamówienia w systemie transakcyjnym</xs:documentation>
+							<xs:documentation xml:lang="en">Unique id the current session in the transactional system</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomerRecord" type="payu:CustomerRecord" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Informacje podstawowowe użytkownika Konta PayU</xs:documentation>
+							<xs:documentation xml:lang="en">Basic data about PayU user</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Shipping" type="payu:Shipping" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Informacje o adresie przesyłki przekazane przez użytkownika.</xs:documentation>
+							<xs:documentation xml:lang="en">Order delivery address data.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Invoice" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Struktura z danymi o fakturze</xs:documentation>
+							<xs:documentation xml:lang="en">VAT invoice data</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Billing" type="payu:BillingAddress_Type">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Adres, który znajdzie się na fakturze VAT</xs:documentation>
+										<xs:documentation xml:lang="en">Address on the VAT invoice</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="ShipTo" type="payu:ShippingAddress_Type" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Adres, na który zostanie wysłana faktura</xs:documentation>
+										<xs:documentation xml:lang="en">Address to which an invoice will be send</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="EInvoiceRequested" type="payu:EInvoiceRequestedCode" default="FALSE" minOccurs="0" maxOccurs="1">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Parametr określający, czy w ramach tego zamówienia kupujący chce otrzymać fakturę elektroniczną.</xs:documentation>
+										<xs:documentation xml:lang="en">Parameter that states whether byuer wants to obtain an e-invoice for the order.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="OrderStatus" type="payu:OrderStatusCode" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Status zamówienia w systemie PayU.</xs:documentation>
+							<xs:documentation xml:lang="en">Order status in the PayU system.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PaymentStatus" type="payu:PaymentStatusCode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Status płatności za zamówienie w systemie PayU.</xs:documentation>
+							<xs:documentation xml:lang="en">Payment status in the PayU system.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PackageStatus" type="payu:PackageStatusCode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Status przesyłki w systemie PayU.</xs:documentation>
+							<xs:documentation xml:lang="en">Package delivery status in the PayU system.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomerMessages" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Lista wiadomości zostawionych przez kupujacego.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Message">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Index">
+												<xs:annotation>
+													<xs:documentation xml:lang="pl">Indeks wiadomości</xs:documentation>
+													<xs:documentation xml:lang="en">Index of a message</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="Value">
+												<xs:annotation>
+													<xs:documentation xml:lang="pl">Treść wiadmości pozostawiona przez kupującego</xs:documentation>
+													<xs:documentation xml:lang="en">Content of the message from the buyer</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="PaidAmount" type="xs:long" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Kwota za całe zamówienie (wraz z kosztami wysyłki) zapłacona przez kupującego. Wyrażona w drobnej jednostce monetarnej.</xs:documentation>
+							<xs:documentation xml:lang="en">Total amount paid by a buyer (together with shippping cost).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CurrencyCode" type="payu:CurrencyCode" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Kod waluty.</xs:documentation>
+							<xs:documentation xml:lang="en">Currency code of the amount paid.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RefOrderId" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Referencyjny identyfikator zamówienia nadany przez sprzedawcę</xs:documentation>
+							<xs:documentation xml:lang="en">Reference order ID defined by a merchant</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="100"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="PayType" minOccurs="0" maxOccurs="1">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="32"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

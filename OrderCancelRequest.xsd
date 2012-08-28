@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="BaseRequest.xsd"/>
+	<xs:complexType name="OrderCancelRequest">
+		<xs:complexContent>
+			<xs:extension base="payu:BaseRequest">
+				<xs:sequence>
+					<xs:element name="MerchantPosId" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Unikalne ID punktu sprzedaży w systemie transakcyjnym PayU</xs:documentation>
+							<xs:documentation xml:lang="en">Unique ID of point of sale/merchant in the transactional system of PayU</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="64"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="SessionId" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Unikalne ID zamówienia w systemie transakcyjnym</xs:documentation>
+							<xs:documentation xml:lang="en">Unique ID the current order in the transactional system</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="64"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Reason" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Powód anulowania zamówienia</xs:documentation>
+							<xs:documentation xml:lang="en">Reason of an order cancellation</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="250"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

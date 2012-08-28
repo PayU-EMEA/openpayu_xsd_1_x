@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Dominik Zyskowski (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="Order.xsd"/>
+	<xs:include schemaLocation="BaseRequest.xsd"/>
+	<xs:include schemaLocation="AvailableShippingCost.xsd"/>
+	<xs:include schemaLocation="CustomerRecord.xsd"/>
+	<xs:include schemaLocation="TypeA_ShippingAddress.xsd"/>
+	<xs:include schemaLocation="TypeA_BillingAddress.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Struktura opisująca komunikat tworzenia zamówienia przez sklep.</xs:documentation>
+		<xs:documentation xml:lang="en">Structure that describes the order creation request prepared by an e-shop.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="OrderCreateRequest">
+		<xs:complexContent>
+			<xs:extension base="payu:BaseRequest">
+				<xs:sequence>
+					<xs:element name="NotifyUrl" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Adres URL, na który sklep chce otrzymywać statusy zamówienia, płatności i komunikaty wysyłane przez PayU</xs:documentation>
+							<xs:documentation xml:lang="en">URL, to which PayU sends order and payment statuses and other messages</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="4"/>
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="OrderCancelUrl" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Adres, pod który zostanie przekierowany kupujący w momencie gdy wybierze w PayU opcję "Anuluj" na formatce podsumowania zamówienia lub gdy minie czas ważności realizacji zamówenia</xs:documentation>
+							<xs:documentation xml:lang="en">URL, to which PayU will redirect the user that wants to cancel his order</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="4"/>
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="OrderCompleteUrl" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Adres, pod który zostanie przekierowany kupujący po zakończeniu płatności za zamówienie</xs:documentation>
+							<xs:documentation xml:lang="en">URL, to which PayU will redirect the user after the payment is complete</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="4"/>
+								<xs:maxLength value="255"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="CustomerIp" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Adres IP kupującego</xs:documentation>
+							<xs:documentation xml:lang="en">Customer IP</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="4"/>
+								<xs:maxLength value="64"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="RefOrderId" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Referencyjny identyfikator zamówienia nadany przez sprzedawcę</xs:documentation>
+							<xs:documentation xml:lang="en">Reference order ID defined by a merchant</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="100"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Order" type="payu:Order" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Struktura przechowująca dane o zamówieniu</xs:documentation>
+							<xs:documentation xml:lang="en">Structure that keeps order data</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Customer" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Struktura używana do przekazania danych użytkownika zalogowanego w systemie sprzedawcy</xs:documentation>
+							<xs:documentation xml:lang="en">Structure used to pass to PayU information about user logged in e-shop's system</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Email" type="xs:string">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Adresy e-mail użytkownika. Jeden użytkownik może mieć kilka adresów e-mail.</xs:documentation>
+										<xs:documentation xml:lang="en">E-mail addresses of a user.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Phone" type="xs:string" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Numer telefonu użytkownika.</xs:documentation>
+										<xs:documentation xml:lang="en">Phone number of a user.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="FirstName" type="xs:string">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Imię użytkownika</xs:documentation>
+										<xs:documentation xml:lang="en">First name of a user</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LastName" type="xs:string">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Nazwisko użytkownika</xs:documentation>
+										<xs:documentation xml:lang="en">Last name of a user</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Language" type="payu:LanguageCode" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Język użytkownika wybrany w systemie sprzedawcy.</xs:documentation>
+										<xs:documentation xml:lang="en">Service language chosen by a user.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Shipping" type="payu:ShippingAddress_Type" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Adres do wysyłki zamówienia</xs:documentation>
+										<xs:documentation xml:lang="en">Order delivery address</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Invoice" type="payu:BillingAddress_Type" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Adres, który ma się pojawić na fakturze VAT</xs:documentation>
+										<xs:documentation xml:lang="en">VAT invoice address.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ShippingCost" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Pole opcjonalne dla OrderType == VIRTUAL. Natomiast pole jest wymagane w przypadku gdy CartType == MATERIAL.</xs:documentation>
+							<xs:documentation xml:lang="en">Field required for OrderType== VIRTUAL. However, th field is not mandatory for OrderType == MATERIAL.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="ShippingCostsUpdateUrl" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation xml:lang="pl">Adres URL, przez który sklep prowadzi z PayU wymianę informacji o kosztach wysyłki. Brak tej wartości jest jednoznaczne z wartością FALSE w polu AvailableShippingCost/ShitToOtherCountry</xs:documentation>
+										<xs:documentation xml:lang="en">URL used by a merchant to send and receive information about shipping cost.</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="4"/>
+											<xs:maxLength value="255"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="AvailableShippingCost" type="payu:AvailableShippingCost"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="PayType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Preferowana przez punkt sprzedaży metoda płatności. Pole informacyjne, kupujący może zmienić zgodnie z własnymi preferencjami</xs:documentation>
+							<xs:documentation xml:lang="en">Payment method preferred by a merchant. However, the buyer can change it on PayU order summary page</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="32"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OrderCreateRequest" type="payu:OrderCreateRequest"/>
+</xs:schema>

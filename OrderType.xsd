@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Wartości określającace typ zamówienia</xs:documentation>
+		<xs:documentation xml:lang="en">Enumeration of order types</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="OrderType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VIRTUAL">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Produkty wirtualne, nie wymagają adresu przesyłki</xs:documentation>
+					<xs:documentation xml:lang="en">Virtual products. Do not require shipping addres</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MATERIAL">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Produkty lub usługi materialne, wymagają adresu przesyłki</xs:documentation>
+					<xs:documentation xml:lang="en">Material goods that require shipping address</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SURCHARGE">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Dopłaty do wcześniejszych zamówień. Typ zarezerwowany dla użytku PayU!</xs:documentation>
+					<xs:documentation xml:lang="en">Sucharges to previous payments. Type restricted for PayU only!</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

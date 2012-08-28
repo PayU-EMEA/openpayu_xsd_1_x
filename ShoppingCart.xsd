@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:include schemaLocation="Product.xsd"/>
+	<xs:include schemaLocation="CurrencyCode.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Obiekt zawierający informacje o koszyku zakupów</xs:documentation>
+		<xs:documentation xml:lang="en">Object used to represent shopping cart</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ShoppingCartItems">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="ShoppingCartItem" type="payu:ShoppingCartItem">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Element koszyka</xs:documentation>
+					<xs:documentation xml:lang="en">An item in the shopping cart</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ShoppingCartItem">
+		<xs:sequence>
+			<xs:element name="Product" type="payu:Product" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Produkt w koszyku</xs:documentation>
+					<xs:documentation xml:lang="en">One product in a shopping cart</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Liczba sztuk produktu</xs:documentation>
+					<xs:documentation xml:lang="en">Quantity of the product</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="999999999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ShoppingCart">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="GrandTotal" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Koszt całego koszyka, bez kosztów wysyłki i bez rabatów. Wartość tego pola to suma iloczynów cen brutto poszczególnych towarów i ich ilości.</xs:documentation>
+					<xs:documentation xml:lang="en">Total price of the items in the shopping cart, excluding shipping costs and discounts.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscountTotal" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Sumaryczna kwota rabatu dla całego koszyka towarów</xs:documentation>
+					<xs:documentation xml:lang="en">Total discount for the shopping cart items</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyCode" type="payu:CurrencyCode" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kod waluty ISO 4217</xs:documentation>
+					<xs:documentation xml:lang="en">Currency code ISO 4217</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShoppingCartItems" type="payu:ShoppingCartItems" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

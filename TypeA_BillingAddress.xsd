@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:include schemaLocation="Address.xsd"/>
+	<xs:complexType name="BillingAddress_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="pl">Typ atomowy definiujący adres</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="payu:Address">
+				<xs:sequence>
+					<xs:element name="RecipientName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Dane odbiorcy: imię, nazwisko, nazwa firmy</xs:documentation>
+							<xs:documentation xml:lang="en">Name of the recipient (name, surname, company name)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RecipientPhone" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Dane odbiorcy: numer telefonu</xs:documentation>
+							<xs:documentation xml:lang="en">Recipient phone number</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RecipientEmail" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="pl">Dane odbiorcy: e-mail</xs:documentation>
+							<xs:documentation xml:lang="en">Recipient e-mail address</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

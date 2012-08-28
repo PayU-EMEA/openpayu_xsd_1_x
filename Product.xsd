@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Dominik Zyskowski (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:include schemaLocation="Price.xsd"/>
+	<xs:include schemaLocation="Weight.xsd"/>
+	<xs:include schemaLocation="Size.xsd"/>
+	<xs:include schemaLocation="Properties.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Obiekt opisujący produkt</xs:documentation>
+		<xs:documentation xml:lang="en">Object used to describe a product</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Product">
+		<xs:sequence>
+			<xs:element name="Name" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Nazwa produktu</xs:documentation>
+					<xs:documentation xml:lang="en">Name of the product</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="256"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="UnitPrice" type="payu:Price" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Cena jednostkowa produktu</xs:documentation>
+					<xs:documentation xml:lang="en">Price per unit of the product</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Weight" type="payu:Weight" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Waga produktu</xs:documentation>
+					<xs:documentation xml:lang="en">Weight of the product</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Size" type="payu:Size" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Rozmiary produktu</xs:documentation>
+					<xs:documentation xml:lang="en">Size of the product</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Discount" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kwota rabatu za dany produkt</xs:documentation>
+					<xs:documentation xml:lang="en">Discount amount for a given product</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtraInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Dodatkowy opis produktu przesyłany z punktu sprzedaży</xs:documentation>
+					<xs:documentation xml:lang="en">Additional information about a product</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Code" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Unikalny kod produktu w systemie sprzedawcy</xs:documentation>
+					<xs:documentation xml:lang="en">Unique product code in a merchant's system</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Properties" type="payu:Properties" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Elastyczny zbiór atrybutów, wykraczających poza typową strukturę biznesową dla specyfikacji konkretnego komunikatu</xs:documentation>
+					<xs:documentation xml:lang="en">Flexible set of attributes that extend the typical business entity used by all other messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Version" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wersja produktu</xs:documentation>
+					<xs:documentation xml:lang="en">Product version</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="64"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

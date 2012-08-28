@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Lista kodów obsługi e-faktur</xs:documentation>
+		<xs:documentation xml:lang="en">List of codes for e-invoicing</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="EInvoiceRequestedCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TRUE">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kupujący zażądał wystawienia e-faktury</xs:documentation>
+					<xs:documentation xml:lang="en">Byuer wants to receive an e-invoice</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FALSE">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kupujący nie chce otrzymać e-faktury</xs:documentation>
+					<xs:documentation xml:lang="en">Byuer does not want to receive an e-invoice</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

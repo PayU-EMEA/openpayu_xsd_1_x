@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Lista kodów błedu zwracanych przez system PayU</xs:documentation>
+		<xs:documentation xml:lang="en">List of error codes returned by PayU</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="StatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OPENPAYU_SUCCESS">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Żądanie przetworzono prawidłowo</xs:documentation>
+					<xs:documentation xml:lang="en">Request successful</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_DATA_NOT_FOUND">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Brak danych w bazie dla zadanych warunków</xs:documentation>
+					<xs:documentation xml:lang="en">Data not found</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_SERVICE_NOT_AVAILABLE">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Serwis nie jest dostępny</xs:documentation>
+					<xs:documentation xml:lang="en">Service not available</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_INTERNAL">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Błędny systemu</xs:documentation>
+					<xs:documentation xml:lang="en">Internal error</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_VALUE_MISSING">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Brak wartości wymaganej do przetworzenia żądania</xs:documentation>
+					<xs:documentation xml:lang="en">Missing required value</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_VALUE_INVALID">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Nieprawidłowa wartość pola</xs:documentation>
+					<xs:documentation xml:lang="en">Invalid value</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_SYNTAX">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Błędna składnia komunikatu</xs:documentation>
+					<xs:documentation xml:lang="en">Syntax error</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_ORDER_NOT_UNIQUE">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Identyfikator zamówienia nie jest unikalny</xs:documentation>
+					<xs:documentation xml:lang="en">Order identifier is not unique</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_UNKNOWN_MERCHANT_POS">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Nieznany numer merchanta</xs:documentation>
+					<xs:documentation xml:lang="en">Unknown MerchantPosId number</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_USER_NOT_UNIQUE">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">E-mail lub login użytkownika nie jest unikalny</xs:documentation>
+					<xs:documentation xml:lang="en">User's e-mail or login is not unique</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_SIGNATURE_INVALID">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wysłana sygnatura jest niepoprawna</xs:documentation>
+					<xs:documentation xml:lang="en">Signature is invalid</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

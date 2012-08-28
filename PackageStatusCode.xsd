@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:simpleType name="PackageStatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PACKAGE_STATUS_SENT">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl"/>
+					<xs:documentation xml:lang="en"/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Dominik Zyskowski (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:include schemaLocation="TypeA_ShippingAddress.xsd"/>
+	<xs:complexType name="Invoice">
+		<xs:sequence>
+			<xs:element name="RecipientName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">DEPRECATED: Docelowo na Invoice.Address.RecipentName</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TIN" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<!-- Tax Identification Number-->
+			<xs:element name="Address" type="payu:ShippingAddress_Type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

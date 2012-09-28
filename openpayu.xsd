@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
+	<xs:include schemaLocation="Common.xsd"/>
+	<xs:include schemaLocation="HeaderRequest.xsd"/>
+	<xs:include schemaLocation="HeaderResponse.xsd"/>
+	<xs:include schemaLocation="OrderDomainRequest.xsd"/>
+	<xs:include schemaLocation="OrderDomainResponse.xsd"/>
+		<xs:annotation>
+			<xs:documentation>DEPRECATED</xs:documentation>
+		</xs:annotation>
+	<xs:complexType name="OpenPayU">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="HeaderRequest" type="payu:HeaderRequest" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="OrderDomainRequest" type="payu:OrderDomainRequest" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="HeaderResponse" type="payu:HeaderResponse" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="OrderDomainResponse" type="payu:OrderDomainResponse" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:sequence>
+			</xs:sequence>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="OpenPayU" type="payu:OpenPayU"/>
+</xs:schema>

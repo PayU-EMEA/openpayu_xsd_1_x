@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:include schemaLocation="Common.xsd"/>
+	<xs:include schemaLocation="TypeA_Properties.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Typ wspólny dla wszystkich odpowiedzi</xs:documentation>
+		<xs:documentation xml:lang="en">Common type for all responses</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BaseResponse">
+		<xs:sequence>
+			<xs:element name="ResId" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wartość określająca unikalną wartość odpowiedzi</xs:documentation>
+					<xs:documentation xml:lang="en">Unique id of the response</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Status" type="payu:Status" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Obiekt reprezentujący status odpowiedzi</xs:documentation>
+					<xs:documentation xml:lang="en">Type that represents the status of this response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Properties" type="payu:Properties" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Elastyczny zbiór atrybutów, wykraczających poza typową strukturę biznesową dla specyfikacji konkretnego komunikatu</xs:documentation>
+					<xs:documentation xml:lang="en">Flexible set of attributes that extend the typical business entity used by all other messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Version" use="optional" fixed="1.1">
+			<xs:annotation>
+				<xs:documentation xml:lang="pl">Wersja komunikatu</xs:documentation>
+				<xs:documentation xml:lang="en">Version of the message</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="10"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:include schemaLocation="Record_CustomerRecord.xsd"/>
+	<xs:include schemaLocation="TypeA_Properties.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Typ wspólny dla wszystkich zapytań</xs:documentation>
+		<xs:documentation xml:lang="en">Common type for all requests</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BaseRequest">
+		<xs:sequence>
+			<xs:element name="ReqId" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wartość określająca unikalną wartość żądania</xs:documentation>
+					<xs:documentation xml:lang="en">Unique id of the request</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="RefReqId" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wartość określająca identyfikator ponownego żądania tożsamy z identyfikatorem poprzedniego żądania. Wartość wykorzystywana przy wiązanych wywołaniach komunikatów</xs:documentation>
+					<xs:documentation xml:lang="en">Reference request id</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="38"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Properties" type="payu:Properties" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Elastyczny zbiór atrybutów, wykraczających poza typową strukturę biznesową dla specyfikacji konkretnego komunikatu</xs:documentation>
+					<xs:documentation xml:lang="en">Flexible set of attributes that extend the typical business entity used by all other messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AttachmentTo" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wartość ReqId komunikatu-rodzica. Wypełnienie tego pola oznacza, że komunikat bieżący jest załącznikiem.</xs:documentation>
+					<xs:documentation xml:lang="en">ReqId of the superior request. Field only filled for messages that will serve as attachments.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Service" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wartość identyfikatora serwisu będącego nadawcą komunikatu</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CustomerIds" type="payu:CustomerIds_Type"/>
+						<xs:element name="ShortName" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ContinueUrl" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Adres URL Kontynuacji. Pole pozwala przekazać klientowi wywołującemu usługę OpenPayU wartość Adresu URL na który ma zostać przekazana odpowiedź / wynik pośredni / wynik finalny przetwarzania komunikatu OpenPayU (np. adres powrotu dla Merchanta).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Version" use="optional" fixed="1.1">
+			<xs:annotation>
+				<xs:documentation xml:lang="pl">Wersja komunikatu</xs:documentation>
+				<xs:documentation xml:lang="en">Version of the message</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="10"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

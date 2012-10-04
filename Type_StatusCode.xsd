@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
 	<xs:annotation>
 		<xs:documentation xml:lang="pl">Lista kodów błedu zwracanych przez system PayU</xs:documentation>
 		<xs:documentation xml:lang="en">List of error codes returned by PayU</xs:documentation>
@@ -12,6 +13,7 @@
 					<xs:documentation xml:lang="en">Request successful</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_WARNING"/>
 			<xs:enumeration value="OPENPAYU_DATA_NOT_FOUND">
 				<xs:annotation>
 					<xs:documentation xml:lang="pl">Brak danych w bazie dla zadanych warunków</xs:documentation>
@@ -70,6 +72,30 @@
 				<xs:annotation>
 					<xs:documentation xml:lang="pl">Wysłana sygnatura jest niepoprawna</xs:documentation>
 					<xs:documentation xml:lang="en">Signature is invalid</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_ERROR_INCONSISTENT_CURRENCIES">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Różne waluty w jednym żądaniu</xs:documentation>
+					<xs:documentation xml:lang="en">Different currencies in one request</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_BUSINESS_ERROR">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Błąd walidacji biznesowej</xs:documentation>
+					<xs:documentation xml:lang="en">Business validation error</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_WARNING_CONTINUE_CVV">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">CVV jest wymagane do realizacji tego zamówienia</xs:documentation>
+					<xs:documentation xml:lang="en">CVV is required to process this order</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OPENPAYU_WARNING_CONTINUE_3DS">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Autoryzacja 3D-Secure jest wymagana do realizacji tego zamówienia</xs:documentation>
+					<xs:documentation xml:lang="en">3D-Secure authorization is required to process this order</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>

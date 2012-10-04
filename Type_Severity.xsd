@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:simpleType name="Severity_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="pl">Ważność biznesowego kodu odpowiedzi.
+
+Dziedzina wartości:
+- INFO
+- WARNING
+- ERROR</xs:documentation>
+			<xs:documentation xml:lang="en">Severity of business code.
+
+Values domain:
+- INFO
+- WARNING
+- ERROR</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="INFO">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">E-mail lub login użytkownika nie jest unikalny</xs:documentation>
+					<xs:documentation xml:lang="en">User's e-mail or login is not unique</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WARNING">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wysłana sygnatura jest niepoprawna</xs:documentation>
+					<xs:documentation xml:lang="en">Signature is invalid</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ERROR">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Różne waluty w jednym żądaniu</xs:documentation>
+					<xs:documentation xml:lang="en">Different currencies in one request</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

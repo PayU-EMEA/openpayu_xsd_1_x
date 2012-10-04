@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">Customer status</xs:documentation>
+		<xs:documentation xml:lang="pl">Wartość określająca status klienta</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="CustomerStatusCode_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BLOCKED">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Blocked</xs:documentation>
+					<xs:documentation xml:lang="pl">Status klienta - zablokowany</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="USER_BLOCKED">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Blocked by himself</xs:documentation>
+					<xs:documentation xml:lang="pl">Status klienta - zablokowany przez klienta</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ACTIVE">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Active</xs:documentation>
+					<xs:documentation xml:lang="pl">Status klienta - aktywny</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CLOSED">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Customer account is closed</xs:documentation>
+					<xs:documentation xml:lang="pl">Status klienta - konto zamknięte</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NEW">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">New customer</xs:documentation>
+					<xs:documentation xml:lang="pl">Status klienta - nowy</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UNVERIFIED">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Customer's account is unverified</xs:documentation>
+					<xs:documentation xml:lang="pl">Status klienta - konto niezweryfikowane</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

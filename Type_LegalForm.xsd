@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:simpleType name="LegalForm_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LTD">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Limited</xs:documentation>
+					<xs:documentation xml:lang="pl">Spółka z ograniczoną odpowiedzialnością</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PLC">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Public limited company</xs:documentation>
+					<xs:documentation xml:lang="pl">Spółka akcyjna</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GP">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">General partnership</xs:documentation>
+					<xs:documentation xml:lang="pl">Spółka jawna</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LP">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Limited partnership</xs:documentation>
+					<xs:documentation xml:lang="pl">Spółka komandytowa</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LLP">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Limited liability partnership</xs:documentation>
+					<xs:documentation xml:lang="pl">Spółka partnerska</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SOLE_PROPRIETORSHIP">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Sole proprietorship</xs:documentation>
+					<xs:documentation xml:lang="pl">Jednoosobowa działalność gospodarcza</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="COOPERATIVE">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Cooperative</xs:documentation>
+					<xs:documentation xml:lang="pl">Spółdzielnia</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OTHER">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"/>
+					<xs:documentation xml:lang="pl"/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

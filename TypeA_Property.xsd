@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.1">
+	<xs:complexType name="Property">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Nazwa Parametru. W przypadku wykorzystania Wartość Parametru jako xs:anyType powinno to być wskazanie wprost nazwy klasy wraz z pakietem.</xs:documentation>
+					<xs:documentation xml:lang="en">Parameter Name. In case of using Parameter Value as xs:anyType it should be full class name with package path.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="Value" type="xs:string">
+					<xs:annotation>
+						<xs:documentation xml:lang="pl">Wartość Parametru zrzutowana na xs:string</xs:documentation>
+						<xs:documentation xml:lang="en">Parameter Value projected to xs:string</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ValueObject" type="xs:anyType">
+					<xs:annotation>
+						<xs:documentation xml:lang="pl">Wartość Parametru jako xs:anyType (java.lang.Object)</xs:documentation>
+						<xs:documentation xml:lang="en">Parameter Value as xs:anyType (java.lang.Object)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">List of time zones</xs:documentation>
+		<xs:documentation xml:lang="pl">Lista stref czasowych</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="TimeZone_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">List of time zones</xs:documentation>
+			<xs:documentation xml:lang="pl">Lista stref czasowych</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UTC-12:00"/>
+			<xs:enumeration value="UTC-11:00"/>
+			<xs:enumeration value="UTC-10:00"/>
+			<xs:enumeration value="UTC-09:30"/>
+			<xs:enumeration value="UTC-09:00"/>
+			<xs:enumeration value="UTC-08:00"/>
+			<xs:enumeration value="UTC-07:00"/>
+			<xs:enumeration value="UTC-06:00"/>
+			<xs:enumeration value="UTC-05:00"/>
+			<xs:enumeration value="UTC-04:30"/>
+			<xs:enumeration value="UTC-04:00"/>
+			<xs:enumeration value="UTC-03:30"/>
+			<xs:enumeration value="UTC-03:00"/>
+			<xs:enumeration value="UTC-02:00"/>
+			<xs:enumeration value="UTC-01:00"/>
+			<xs:enumeration value="UTC+00:00"/>
+			<xs:enumeration value="UTC+01:00"/>
+			<xs:enumeration value="UTC+02:00"/>
+			<xs:enumeration value="UTC+03:00"/>
+			<xs:enumeration value="UTC+03:30"/>
+			<xs:enumeration value="UTC+04:00"/>
+			<xs:enumeration value="UTC+04:30"/>
+			<xs:enumeration value="UTC+05:00"/>
+			<xs:enumeration value="UTC+05:30"/>
+			<xs:enumeration value="UTC+05:45"/>
+			<xs:enumeration value="UTC+06:00"/>
+			<xs:enumeration value="UTC+06:30"/>
+			<xs:enumeration value="UTC+07:00"/>
+			<xs:enumeration value="UTC+08:00"/>
+			<xs:enumeration value="UTC+09:00"/>
+			<xs:enumeration value="UTC+09:30"/>
+			<xs:enumeration value="UTC+10:00"/>
+			<xs:enumeration value="UTC+10:30"/>
+			<xs:enumeration value="UTC+11:00"/>
+			<xs:enumeration value="UTC+11:30"/>
+			<xs:enumeration value="UTC+12:00"/>
+			<xs:enumeration value="UTC+12:45"/>
+			<xs:enumeration value="UTC+13:00"/>
+			<xs:enumeration value="UTC+14:00"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

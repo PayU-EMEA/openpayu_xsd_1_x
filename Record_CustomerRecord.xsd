@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:include schemaLocation="Type_CountryCode.xsd"/>
+	<xs:include schemaLocation="Type_CustomerProfileCode.xsd"/>
+	<xs:include schemaLocation="Type_CustomerStatusCode.xsd"/>
+	<xs:include schemaLocation="Type_LanguageCode.xsd"/>
+	<xs:include schemaLocation="Type_TimeZone.xsd"/>
+	<xs:include schemaLocation="Type_LegalForm.xsd"/>
+	<xs:include schemaLocation="TypeA_Identity.xsd"/>
+	<xs:include schemaLocation="TypeA_Properties.xsd"/>
+	<xs:complexType name="CustomerRecord_Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Customer cononical entity
+
+Note! Ultimately, the Customer entity expressed by CustomerALLRecord will be migrated to CustomerRecord</xs:documentation>
+			<xs:documentation xml:lang="pl">Encja kanoniczna Klient
+
+Uwaga! Docelowo encja Klient wyrażona rekordem CustomerALLRecord będzie migrowana do rekordu CustomerRecord</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomerIds" type="payu:CustomerIds_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Customer id(s)</xs:documentation>
+					<xs:documentation xml:lang="pl">Identyfikator(-y) encji Klient</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomerInfo" type="payu:CustomerInfo_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Customer business data</xs:documentation>
+					<xs:documentation xml:lang="pl">Dane biznesowe encji Klient</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomerStatus" type="payu:CustomerStatus_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Customer status(es)</xs:documentation>
+					<xs:documentation xml:lang="pl">Status(-y) encji Klient</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomerIds_Type">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:unsignedLong" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Unique Customer identifier (technical and possibly business identifier)</xs:documentation>
+					<xs:documentation xml:lang="pl">Unikalny identyfikator Klienta (identyfikator techniczny i ew. biznesowy)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PublicId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Unique Public Identifier</xs:documentation>
+					<xs:documentation xml:lang="pl">Unikalny Identyfikator Publiczny</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExternalId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">External Identifier</xs:documentation>
+					<xs:documentation xml:lang="pl">Identyfikator Zewnętrzny</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomerInfo_Type">
+		<xs:sequence>
+			<xs:element name="Profile" type="payu:CustomerProfileCode_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Profil klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Customer profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Imię Klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Customer’s Name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Nazwisko Klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Customer’s Surname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Nazwa Klienta (np. firmy)</xs:documentation>
+					<xs:documentation xml:lang="en">Customer Name (ex. company)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryCode" type="payu:CountryCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kraj Klienta. Kod kraju zgodnie ze standardem ISO 3166</xs:documentation>
+					<xs:documentation xml:lang="en">Customer country. Value taken from ISO-3166 standard</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Language" type="payu:LanguageCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Język Klienta. Język wybrany przez użytkownika</xs:documentation>
+					<xs:documentation xml:lang="en">Client's Language. Language chosen by a user</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeZone" type="payu:TimeZone_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Strefa Czasowa Klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Time zone of a customer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateOfBirth" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Data Urodzenia</xs:documentation>
+					<xs:documentation xml:lang="en">Date of Birth</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentId" type="payu:Identity_type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Numer Dokumentu Klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Customer’s Document Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OtherId" type="payu:Identity_type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Numer Innego Identyfikatora Klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Other Customer’s Id Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Email" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">E-Mail Klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Customer’s E-mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PhoneNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Telefon Klienta</xs:documentation>
+					<xs:documentation xml:lang="en">Customer’s Phone Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LegalForm" type="payu:LegalForm_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Forma prawna działalności gospodarczej</xs:documentation>
+					<xs:documentation xml:lang="en">Legal form</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomerStatus_Type">
+		<xs:sequence>
+			<xs:element name="Status" type="payu:CustomerStatusCode_Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Customer status</xs:documentation>
+					<xs:documentation xml:lang="pl">Status Klienta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

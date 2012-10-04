@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">List of customer's profiles</xs:documentation>
+		<xs:documentation xml:lang="pl">Lista profili klientów</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="CustomerProfileCode_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CUSTOMER_PROFILE_ENTERPRISE">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl"/>
+					<xs:documentation xml:lang="en"/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CUSTOMER_PROFILE_SMALLBUSINESS">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl"/>
+					<xs:documentation xml:lang="en"/>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CUSTOMER_PROFILE_INDIVIDUAL">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl"/>
+					<xs:documentation xml:lang="en"/>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

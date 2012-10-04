@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.1">
+	<xs:include schemaLocation="Type_IdKind.xsd"/>
+	<xs:complexType name="Identity_type">
+		<xs:annotation>
+			<xs:documentation xml:lang="pl">Typ atomowy reprezentujący Identyfikator Podmiotu (np. dokument)</xs:documentation>
+			<xs:documentation xml:lang="en">Atomic type representing Item Identifier (e.g. document)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IdKind" type="payu:IdKind_type" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Rodzaj Identyfikatora (np. dokumentu)
+
+Dziedzina wartości:
+- I - dowód osobisty
+- P - paszport
+- O - inny
+- T - numer identyfikacji podatkowej
+- NBRN - numer z rejestru gospodarki narodowej (np. REGON)
+- PL_P - PESEL</xs:documentation>
+					<xs:documentation xml:lang="en">Identifier Type (e.g. document type)
+
+Value domain:
+- I - identification card
+- P - passport
+- O - other
+- T - tax identification number
+- NBRN - nationa business registry number (ex. REGON)
+- PL_P - PESEL</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Value" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wartość Identyfikatora (dokumentu)</xs:documentation>
+					<xs:documentation xml:lang="en">Identifier Value (of a document)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

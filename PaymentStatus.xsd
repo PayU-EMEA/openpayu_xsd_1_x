@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:include schemaLocation="Type_PaymentStatusCode.xsd"/>
+	<xs:include schemaLocation="Type_CurrencyCode.xsd"/>
+	<xs:include schemaLocation="Type_PriorityCode.xsd"/>
+	<xs:complexType name="PaymentStatus">
+		<xs:sequence>
+			<xs:element name="PaymentId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PaymentType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PaymentStatus" type="payu:PaymentStatusCode" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Amount" type="xs:long" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kwota zapłacona przez kupującego</xs:documentation>
+					<xs:documentation xml:lang="en">Amount paid by the buyer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Discount" type="xs:long" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Kwota rabatu naliczona automatycznie przez acquirera</xs:documentation>
+					<xs:documentation xml:lang="en">Discount amount given by the acquirer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyCode" type="payu:CurrencyCode" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Timestamp" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PaymentStatusId" type="xs:string" maxOccurs="1"/>
+			<xs:element name="Retried" type="xs:boolean" default="0" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Określa czy status jest wysłany ponownie</xs:documentation>
+					<xs:documentation xml:lang="en">Says whether the status is sent again. 0 - no, 1- yes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-	<xs:include schemaLocation="ShoppingCart.xsd"/>
-	<xs:include schemaLocation="OrderType.xsd"/>
+<!-- edited with XMLSpy v2011 rel. 3 (http://www.altova.com) by Robert Magda (Grupa Allegro Sp. z o.o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:include schemaLocation="TypeA_ShoppingCart.xsd"/>
+	<xs:include schemaLocation="Type_OrderType.xsd"/>
 	<xs:include schemaLocation="Type_EInvoiceProvidedCode.xsd"/>
 	<xs:annotation>
 		<xs:documentation xml:lang="pl">Struktura opisująca zamówienie wysyłane do PayU.</xs:documentation>
@@ -79,6 +81,12 @@
 				<xs:annotation>
 					<xs:documentation xml:lang="pl">Parametr określający, czy w ramach tego zamówienia kupujący może otrzymać fakturę elektroniczną. FALSE - merchant nie wystawia faktur elektronicznych, TRUE - merchant wystawia faktury elektroniczne</xs:documentation>
 					<xs:documentation xml:lang="en">Parameter that states whether bayuer can obtain an e-invoice for the order. FALSE - merchant does not issue e-invoices. TRUE - merchant issues e-invoices</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InvoiceDisabled" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Parameter that disables "Invoice data" section on the order summary page. The buyer will not be able to ask for invoice. By default - the byuer can always ask for an invoice</xs:documentation>
+					<xs:documentation xml:lang="pl">Parametr wyłączający sekcję "Dane do faktury" na podsumowaniu zamówienia. Kupujący nie będzie mógł zażądać od sprzedawcy wystawienia faktury. Domyślnie użytkownik zawsze może zażądać wystawienia faktury</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="OrderType" type="payu:OrderType" minOccurs="1" maxOccurs="1">

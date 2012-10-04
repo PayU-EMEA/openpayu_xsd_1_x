@@ -1,54 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-	<xs:include schemaLocation="StatusCode.xsd"/>
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:include schemaLocation="Type_StatusCode.xsd"/>
+	<xs:include schemaLocation="Type_Severity.xsd"/>
+	<xs:include schemaLocation="TypeA_Properties.xsd"/>
 	<xs:complexType name="Status">
 		<xs:sequence>
-			<xs:element name="StatusCode" type="payu:StatusCode" minOccurs="1" maxOccurs="1">
+			<xs:element name="StatusCode" type="payu:StatusCode">
 				<xs:annotation>
-					<xs:documentation xml:lang="pl">Kod statusu - typ enumerowany</xs:documentation>
 					<xs:documentation xml:lang="en">Status code - enumerated type</xs:documentation>
+					<xs:documentation xml:lang="pl">Kod statusu - typ enumerowany</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ServerStatusCode" minOccurs="0" maxOccurs="1">
+			<xs:element name="Severity" type="payu:Severity_Type" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="pl">Kod statusu serwera</xs:documentation>
-					<xs:documentation xml:lang="en">Server status code</xs:documentation>
+					<xs:documentation xml:lang="en">Severity of the business response code</xs:documentation>
+					<xs:documentation xml:lang="pl">Ważność biznesowego kodu odpowiedzi</xs:documentation>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:minLength value="4"/>
-						<xs:maxLength value="64"/>
-					</xs:restriction>
-				</xs:simpleType>
 			</xs:element>
-			<xs:element name="Severity" minOccurs="0" maxOccurs="1">
+			<xs:element name="Code" type="xs:int" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="pl">Ważność statusu</xs:documentation>
-					<xs:documentation xml:lang="en">Severity of the status</xs:documentation>
+					<xs:documentation xml:lang="en">Business response code - numerical value. Business message processing's result</xs:documentation>
+					<xs:documentation xml:lang="pl">Biznesowy kod odpowiedzi - wartość numeryczna. Kod biznesowy powstały w wyniku przetwarzania komunikatu</xs:documentation>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:minLength value="4"/>
-						<xs:maxLength value="64"/>
-					</xs:restriction>
-				</xs:simpleType>
 			</xs:element>
-			<xs:element name="StatusDesc" minOccurs="0" maxOccurs="1">
+			<xs:element name="CodeLiteral" type="xs:string" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="pl">Opis statusu</xs:documentation>
-					<xs:documentation xml:lang="en">Description of the status</xs:documentation>
+					<xs:documentation xml:lang="en">Business response code - textual value. Business message processing's result</xs:documentation>
+					<xs:documentation xml:lang="pl">Biznesowy kod odpowiedzi - wartość tekstowa. Kod biznesowy powstały w wyniku przetwarzania komunikatu</xs:documentation>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:minLength value="4"/>
-						<xs:maxLength value="255"/>
-					</xs:restriction>
-				</xs:simpleType>
 			</xs:element>
-			<xs:element name="Location" minOccurs="0" maxOccurs="1">
+			<xs:element name="Location" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="pl">Lokalizacja źródła statusu</xs:documentation>
 					<xs:documentation xml:lang="en">Location of the status source</xs:documentation>
+					<xs:documentation xml:lang="pl">Lokalizacja źródła statusu</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -56,12 +41,32 @@
 						<xs:maxLength value="255"/>
 					</xs:restriction>
 				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StatusDesc" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Description of the status / business response code</xs:documentation>
+					<xs:documentation xml:lang="pl">Opis statusu / biznesowego kodu odpowiedzi</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StatusProperties" type="payu:Properties" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Business response code properties.</xs:documentation>
+					<xs:documentation xml:lang="pl">Parametry Biznesowego Kodu Odpowiedzi.</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="Version">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="1.0"/>
+			<xs:enumeration value="1.1"/>
+			<xs:enumeration value="2.0"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="Algorithm">

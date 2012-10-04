@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:include schemaLocation="Type_CurrencyCode.xsd"/>
 	<xs:annotation>
 		<xs:documentation xml:lang="pl">Obiekt opisujący cenę</xs:documentation>
 		<xs:documentation xml:lang="en">Object used to describe price</xs:documentation>
 	</xs:annotation>
-	<xs:include schemaLocation="CurrencyCode.xsd"/>
-	<xs:complexType name="Discount">
+		<xs:complexType name="Discount">
 		<xs:sequence>
 			<xs:element name="CouponCodeUsed" type="xs:string" minOccurs="0" maxOccurs="1">
 				<xs:annotation>

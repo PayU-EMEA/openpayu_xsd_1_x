@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.0">
-	<xs:include schemaLocation="Common.xsd"/>
-	<xs:include schemaLocation="Shipping.xsd"/>
-	<xs:include schemaLocation="Invoice.xsd"/>
-	<xs:include schemaLocation="Billing.xsd"/>
-	<xs:include schemaLocation="PaymentStatusCode.xsd"/>
-	<xs:include schemaLocation="OrderStatusCode.xsd"/>
-	<xs:include schemaLocation="PackageStatusCode.xsd"/>
-	<xs:include schemaLocation="CustomerRecord.xsd"/>
+<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
+<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.1">
 	<xs:include schemaLocation="BaseResponse.xsd"/>
+	<xs:include schemaLocation="Common.xsd"/>
+	<xs:include schemaLocation="TypeA_Shipping.xsd"/>
+	<xs:include schemaLocation="TypeA_Invoice.xsd"/>
+	<xs:include schemaLocation="TypeA_Billing.xsd"/>
+	<xs:include schemaLocation="Type_PaymentStatusCode.xsd"/>
+	<xs:include schemaLocation="Type_OrderStatusCode.xsd"/>
+	<xs:include schemaLocation="Type_PackageStatusCode.xsd"/>
+	<xs:include schemaLocation="CustomerRecord.xsd"/>
 	<xs:include schemaLocation="TypeA_BillingAddress.xsd"/>
 	<xs:include schemaLocation="Type_EInvoiceRequestedCode.xsd"/>
 	<xs:annotation>
@@ -21,20 +23,20 @@
 				<xs:sequence>
 					<xs:element name="MerchantPosId" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
-							<xs:documentation xml:lang="pl">Unikalne id punktu sprzedaży w systemie transakcyjnym PayU/</xs:documentation>
-							<xs:documentation xml:lang="en">Unique id of point of sale/merchant in the PayU transactional system</xs:documentation>
+							<xs:documentation xml:lang="pl">Unikalne id punktu sprzedaży w systemie transakcyjnym PayU</xs:documentation>
+							<xs:documentation xml:lang="en">Unique id of point of sale/merchant in the PayU transactional system.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="SessionId" type="xs:string" minOccurs="1" maxOccurs="1">
 						<xs:annotation>
-							<xs:documentation xml:lang="pl">Unikalne ID zamówienia w systemie transakcyjnym</xs:documentation>
-							<xs:documentation xml:lang="en">Unique id the current session in the transactional system</xs:documentation>
+							<xs:documentation xml:lang="pl">Unikalne ID zamówienia w systemie transakcyjnym.</xs:documentation>
+							<xs:documentation xml:lang="en">Unique id the current session in the transactional system.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="CustomerRecord" type="payu:CustomerRecord" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation xml:lang="pl">Informacje podstawowowe użytkownika Konta PayU</xs:documentation>
-							<xs:documentation xml:lang="en">Basic data about PayU user</xs:documentation>
+							<xs:documentation xml:lang="en">Basic data about PayU user.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="Shipping" type="payu:Shipping" minOccurs="0" maxOccurs="1">
@@ -43,7 +45,7 @@
 							<xs:documentation xml:lang="en">Order delivery address data.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="Invoice" minOccurs="0" maxOccurs="1">
+					<xs:element name="Invoice" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation xml:lang="pl">Struktura z danymi o fakturze</xs:documentation>
 							<xs:documentation xml:lang="en">VAT invoice data</xs:documentation>
@@ -130,7 +132,7 @@
 					</xs:element>
 					<xs:element name="RefOrderId" minOccurs="0">
 						<xs:annotation>
-							<xs:documentation xml:lang="pl">Referencyjny identyfikator zamówienia nadany przez sprzedawcę</xs:documentation>
+							<xs:documentation xml:lang="pl">Referencyjny identyfikator zamówienia nadany przez sprzedawcą</xs:documentation>
 							<xs:documentation xml:lang="en">Reference order ID defined by a merchant</xs:documentation>
 						</xs:annotation>
 						<xs:simpleType>

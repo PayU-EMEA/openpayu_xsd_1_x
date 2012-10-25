@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<xs:annotation>
+		<xs:documentation xml:lang="pl">Lista kodów priorytetów statusów przesyłanych z cora transakcyjnego do Checkoutu</xs:documentation>
+		<xs:documentation xml:lang="en">List of priority codes that are sent from transaction core to Checkout</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="PriorityCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LOW">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Niski priorytet</xs:documentation>
+					<xs:documentation xml:lang="en">Low priority</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NORMAL">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Normalny priorytet</xs:documentation>
+					<xs:documentation xml:lang="en">Normal priority</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HIGH">
+				<xs:annotation>
+					<xs:documentation xml:lang="pl">Wysoki priorytet</xs:documentation>
+					<xs:documentation xml:lang="en">High priority</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

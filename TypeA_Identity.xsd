@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2012 (http://www.altova.com) by Szymon Notecki (Grupa Alegro sp. z o. o.) -->
-<?xml-stylesheet type="text/xsl" href="converter.xslt"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:payu="http://www.openpayu.com/openpayu.xsd" targetNamespace="http://www.openpayu.com/openpayu.xsd" elementFormDefault="qualified" version="1.1">
 	<xs:include schemaLocation="Type_IdKind.xsd"/>
 	<xs:complexType name="Identity_type">

@@ -141,7 +141,7 @@
 							<xs:sequence>
 								<xs:element name="ShippingCostsUpdateUrl" minOccurs="0">
 									<xs:annotation>
-										<xs:documentation xml:lang="pl">Adres URL, przez który sklep prowadzi z PayU wymianę informacji o kosztach wysyłki. Brak tej wartości jest jednoznaczne z wartością FALSE w polu AvailableShippingCost/ShitToOtherCountry</xs:documentation>
+										<xs:documentation xml:lang="pl">Adres URL, przez który sklep prowadzi z PayU wymianę informacji o kosztach wysyłki. Brak tej wartości jest jednoznaczne z wartością FALSE w polu AvailableShippingCost/ShipToOtherCountry</xs:documentation>
 										<xs:documentation xml:lang="en">URL used by a merchant to send and receive information about shipping cost.</xs:documentation>
 									</xs:annotation>
 									<xs:simpleType>
